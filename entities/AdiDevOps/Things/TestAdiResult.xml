@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b2219"
+ majorVersion="8"
+ minorVersion="4"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="3"
+ schemaVersion="1041"
+ universal="password">
+    <Things>
+        <Thing
+         description=""
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2019-09-18T14:11:55.164Z"
+         name="TestAdiResult"
+         projectName="AdiDevOps"
+         published="false"
+         tags=""
+         thingTemplate="GenericThing"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions></PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="search">
+                        <ResultType
+                         aspect.dataShape="SpotlightSearch"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="RunAllTests">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        //1. Initializing the test data. Optional.
+                                        // me.CreateTestData();
+                                        
+                                        //var params = {
+                                        //    infoTableName : "InfoTable",
+                                        //    dataShapeName : "TestResultData"
+                                        //};
+                                        //
+                                        //params = me.search();
+                                        //
+                                        //// CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(TestResultData)
+                                        //// var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        //var result = params;
+                                        
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "TestResultData"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(TestResultData)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        // TestResultData entry object
+                                        var newEntry = new Object();
+                                        newEntry.comments = "Comments1"; // STRING
+                                        newEntry.inputParams = {}; // JSON
+                                        newEntry.expectedOutput = {}; // JSON
+                                        newEntry.passed = true; // BOOLEAN
+                                        newEntry.testName = "Test Name Passed"; // STRING [Primary Key]
+                                        newEntry.timestamp = new Date(); // DATETIME [Primary Key]
+                                        
+                                        result.AddRow(newEntry);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="search">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                        	maxItems: undefined /* NUMBER */,
+                                        	searchExpression: undefined /* STRING */,
+                                        	types: undefined /* JSON */,
+                                        	withPermissions: undefined /* BOOLEAN */,
+                                        	endDate: undefined /* DATETIME */,
+                                        	aspects: undefined /* JSON */,
+                                        	excludedAspects: undefined /* JSON */,
+                                        	tags: undefined /* TAGS */,
+                                        	thingTemplates: undefined /* JSON */,
+                                        	searchDescriptions: undefined /* BOOLEAN */,
+                                        	thingShapes: undefined /* JSON */,
+                                        	sortBy: undefined /* STRING */,
+                                        	isAscending: undefined /* BOOLEAN */,
+                                        	projectName: 'AdiDevOps' /* PROJECTNAME */,
+                                        	maxSearchItems: undefined /* NUMBER */,
+                                        	startDate: undefined /* DATETIME */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: SpotlightSearch
+                                        var result = Resources["SearchFunctions"].SpotlightSearch(params);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations></AlertConfigurations>
+            <ImplementedShapes>
+                <ImplementedShape
+                 name="TestingTS"
+                 type="ThingShape"></ImplementedShape>
+            </ImplementedShapes>
+            <ThingProperties></ThingProperties>
+        </Thing>
+    </Things>
+</Entities>
